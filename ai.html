@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Health Assistant - Aacharya</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .chat-box {
+      height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #fafafa;
+    }
+
+    .user-msg {
+      text-align: right;
+      margin: 5px 0;
+      color: #1976d2;
+    }
+
+    .ai-msg {
+      text-align: left;
+      margin: 5px 0;
+      color: #333;
+    }
+
+    .dark .chat-box {
+      background: #222;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🤖 AI Health Assistant</h1>
+
+    <div class="chat-box" id="chat"></div>
+
+    <input id="input" placeholder="Ask about fitness, yoga, diet, disease prevention..." />
+    <button onclick="send()">Send</button>
+
+    <button onclick="window.location.href='user.html'">⬅ Back</button>
+  </div>
+
+  <script>
+    function send() {
+      const input = document.getElementById("input");
+      const chat = document.getElementById("chat");
+
+      if (!input.value) return;
+
+      // User message
+      chat.innerHTML += "<div class='user-msg'>" + input.value + "</div>";
+
+      const msg = input.value.toLowerCase();
+      let reply = "I'm here to help with health, fitness, yoga, and prevention. Try asking about exercise, diet, or stress.";
+
+      if (msg.includes("fitness")) {
+        reply = "For fitness, aim for 30 minutes of daily activity: walking, bodyweight exercises, and stretching. Consistency matters more than intensity.";
+      } else if (msg.includes("yoga")) {
+        reply = "Yoga improves flexibility and mental health. Start with Surya Namaskar, Bhujangasana, and deep breathing for 10 minutes daily.";
+      } else if (msg.includes("diet")) {
+        reply = "A balanced diet includes carbs, protein, healthy fats, vitamins, and water. Eat fruits, vegetables, whole grains, and lean protein.";
+      } else if (msg.includes("diabetes")) {
+        reply = "For diabetes prevention: maintain healthy weight, avoid sugary foods, walk daily, and get regular blood sugar checkups.";
+      } else if (msg.includes("stress")) {
+        reply = "Manage stress by deep breathing, meditation, regular sleep, and limiting screen time. Yoga and walking help a lot.";
+      }
+
+      // AI message
+      setTimeout(() => {
+        chat.innerHTML += "<div class='ai-msg'>🤖 " + reply + "</div>";
+        chat.scrollTop = chat.scrollHeight;
+      }, 500);
+
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
