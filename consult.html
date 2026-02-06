@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Doctor Consultation - Aacharya</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .box {
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    .dark .box {
+      background: #222;
+      color: white;
+    }
+
+    .chat {
+      height: 150px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 5px;
+      border-radius: 5px;
+      margin-top: 5px;
+      background: white;
+    }
+
+    .dark .chat {
+      background: #111;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🩺 Doctor Consultation</h1>
+
+    <div class="box">
+      <h3>📅 Book Appointment</h3>
+
+      <label>Select Doctor</label>
+      <select id="doctor">
+        <option>Dr. Sharma (General)</option>
+        <option>Dr. Mehta (Nutritionist)</option>
+        <option>Dr. Khan (Physiotherapist)</option>
+      </select>
+
+      <label>Select Date</label>
+      <input type="date" id="date">
+
+      <button onclick="book()">Book Appointment</button>
+      <p id="confirm"></p>
+    </div>
+
+    <div class="box">
+      <h3>💬 Chat With Doctor</h3>
+      <div class="chat" id="chatBox"></div>
+      <input id="msg" placeholder="Type message...">
+      <button onclick="sendMsg()">Send</button>
+    </div>
+
+    <button onclick="window.location.href='user.html'">⬅ Back</button>
+  </div>
+
+  <script>
+    function book() {
+      const doc = document.getElementById("doctor").value;
+      const date = document.getElementById("date").value;
+      const confirm = document.getElementById("confirm");
+
+      if (!date) {
+        confirm.innerText = "❌ Please select a date.";
+        return;
+      }
+
+      confirm.innerText =
+        "✅ Appointment booked with " + doc + " on " + date;
+    }
+
+    function sendMsg() {
+      const msg = document.getElementById("msg");
+      const chat = document.getElementById("chatBox");
+
+      if (!msg.value) return;
+
+      // User message
+      chat.innerHTML += "<p><b>You:</b> " + msg.value + "</p>";
+
+      // Fake doctor reply
+      setTimeout(() => {
+        chat.innerHTML += "<p><b>Doctor:</b> Thank you for your message. I will review and respond shortly.</p>";
+        chat.scrollTop = chat.scrollHeight;
+      }, 500);
+
+      msg.value = "";
+    }
+  </script>
+</body>
+</html>
