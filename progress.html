@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Progress Tracker - Aacharya</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>📈 Progress & Habit Tracker</h1>
+  <p>Track your daily habits and personal growth</p>
+
+  <!-- ADD HABIT -->
+  <input type="text" id="habitInput" placeholder="Enter new habit (e.g. Walk 30 mins)">
+  <button onclick="addHabit()">Add Habit</button>
+
+  <!-- HABIT LIST -->
+  <div id="habitList"></div>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <p id="progressText">0% Completed</p>
+
+  <br>
+  <button onclick="window.location.href='user.html'">⬅ Back to Dashboard</button>
+</div>
+
+<script>
+  let habits = JSON.parse(localStorage.getItem("habits")) || [];
+
+  function addHabit() {
+    const input = document.getElementById("habitInput");
+    if (input.value === "") return;
+
+    habits.push({ name: input.value, done: false });
+    input.value = "";
+    saveAndRender();
+  }
+
+  function toggleHabit(index) {
+    habits[index].done = !habits[index].done;
+    saveAndRender();
+  }
+
+  function saveAndRender() {
+    localStorage.setItem("habits", JSON.stringify(habits));
+    renderHabits();
+  }
+
+  function renderHabits() {
+    const list = document.getElementById("habitList");
+    list.innerHTML = "";
+
+    let completed = 0;
+
+    habits.forEach((habit, index) => {
+      if (habit.done) completed++;
+
+      list.innerHTML += `
+        <div class="habit">
+          <span>${habit.name}</span>
+          <input type="checkbox" ${habit.done ? "checked" : ""} 
+                 onclick="toggleHabit(${index})">
+        </div>
+      `;
+    });
+
+    updateProgress(completed);
+  }
+
+  function updateProgress(done) {
+    const total = habits.length;
+    const percent = total === 0 ? 0 : Math.round((done / total) * 100);
+
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("progressText").innerText =
+      percent + "% Completed";
+  }
+
+  renderHabits();
+</script>
+
+</body>
+</html>
