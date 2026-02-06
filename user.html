@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard - Aacharya</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome User 👋</h1>
+
+    <button onclick="go('ai.html')">🤖 AI Health Assistant</button>
+    <button onclick="go('diet.html')">🥗 Diet Maker</button>
+    <button onclick="go('progress.html')">📈 Progress Tracker</button>
+    <button onclick="go('shop.html')">🛒 Shop Fitness & Food</button>
+    <button onclick="go('consult.html')">🩺 Consult Doctor</button>
+
+    <button onclick="go('index.html')">Logout</button>
+  </div>
+
+  <script>
+    function go(page) {
+      window.location.href = page;
+    }
+  </script>
+</body>
+</html>
