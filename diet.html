@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diet Maker - Aacharya</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .result {
+      text-align: left;
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .dark .result {
+      background: #222;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🥗 Diet Maker</h1>
+
+    <label>Enter Available Food Items (comma separated)</label>
+    <input id="food" placeholder="e.g. rice, peanuts, peanut butter, soya bean, chana, moong dal, chia seeds, lemon, fruits">
+
+    <button onclick="makeDiet()">Generate Diet</button>
+
+    <div id="output" class="result"></div>
+
+    <button onclick="window.location.href='user.html'">⬅ Back</button>
+  </div>
+
+  <script>
+    function makeDiet() {
+      const food = document.getElementById("food").value.toLowerCase();
+      let result = "<h3>🥗 Nutrition & Diet Plan</h3>";
+
+      if (!food) {
+        document.getElementById("output").innerHTML = "❌ Please enter food items.";
+        return;
+      }
+
+      // CARBOHYDRATES
+      if (food.includes("rice")) {
+        result += "<p>🍚 Rice: High in carbohydrates, provides long-lasting energy.</p>";
+      }
+      if (food.includes("roti")) {
+        result += "<p>🍞 Roti: Whole grain carbs, supports digestion and steady energy.</p>";
+      }
+
+      // PROTEIN & HEALTHY FATS
+      if (food.includes("peanut")) {
+        result += "<p>🥜 Peanuts: High in protein and healthy fats, supports muscle and heart health.</p>";
+      }
+      if (food.includes("peanut butter")) {
+        result += "<p>🥜 Peanut Butter: Energy-dense, great for weight gain and muscle building.</p>";
+      }
+      if (food.includes("soy") || food.includes("soya")) {
+        result += "<p>🌱 Soybean: Complete plant protein, excellent for muscle growth.</p>";
+      }
+      if (food.includes("chana")) {
+        result += "<p>🫘 Chana: High in fiber and protein, improves digestion and strength.</p>";
+      }
+
+      // DAL & LENTILS (ALL TYPES)
+      if (
+        food.includes("dal") ||
+        food.includes("lentil") ||
+        food.includes("moong") ||
+        food.includes("masoor") ||
+        food.includes("toor") ||
+        food.includes("urad") ||
+        food.includes("rajma")
+      ) {
+        result += "<p>🥣 Dal/Lentils: Rich in protein, iron, and fiber for daily nutrition and immunity.</p>";
+      }
+
+      // SEEDS
+      if (
+        food.includes("seed") ||
+        food.includes("chia") ||
+        food.includes("flax") ||
+        food.includes("pumpkin") ||
+        food.includes("sunflower") ||
+        food.includes("sesame")
+      ) {
+        result += "<p>🌰 Seeds: High in omega-3, minerals, and fiber for brain, heart, and digestion.</p>";
+      }
+
+      // VITAMINS & FRUITS
+      if (
+        food.includes("lemon") ||
+        food.includes("fruit") ||
+        food.includes("apple") ||
+        food.includes("orange") ||
+        food.includes("banana") ||
+        food.includes("mango")
+      ) {
+        result += "<p>🍋 Fruits & Lemon: Rich in Vitamin C and antioxidants for immunity and skin health.</p>";
+      }
+
+      // DEFAULT MESSAGE
+      if (result === "<h3>🥗 Nutrition & Diet Plan</h3>") {
+        result += "<p>ℹ️ Add items like rice, dal, fruits, seeds, or protein sources to generate a plan.</p>";
+      }
+
+      // DAILY PLAN
+      result += "<h4>📅 Suggested Daily Plan:</h4>";
+      result += "<p>🌅 Breakfast: Fruits + Seeds + Milk / Peanut Butter</p>";
+      result += "<p>🌞 Lunch: Rice/Roti + Dal/Chana + Vegetables</p>";
+      result += "<p>🌙 Dinner: Light meal + Fruits + Lemon water</p>";
+
+      document.getElementById("output").innerHTML = result;
+    }
+  </script>
+</body>
+</html>
