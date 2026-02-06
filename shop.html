@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop - Aacharya</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .card {
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    .dark .card {
+      background: #222;
+      color: white;
+    }
+
+    .cart {
+      margin-top: 15px;
+      padding: 10px;
+      background: #e3f2fd;
+      border-radius: 8px;
+    }
+
+    .dark .cart {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🛒 Aacharya Shop</h1>
+
+    <h3>Fitness Equipment</h3>
+    <div class="card">
+      🏋️ Dumbbells  
+      <button onclick="add('Dumbbells')">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      🧘 Yoga Mat  
+      <button onclick="add('Yoga Mat')">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      🚴 Resistance Bands  
+      <button onclick="add('Resistance Bands')">Add to Cart</button>
+    </div>
+
+    <h3>Healthy Food</h3>
+    <div class="card">
+      🥜 Mixed Seeds Pack  
+      <button onclick="add('Mixed Seeds Pack')">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      🥛 Protein Milk  
+      <button onclick="add('Protein Milk')">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      🍎 Fruit Box  
+      <button onclick="add('Fruit Box')">Add to Cart</button>
+    </div>
+
+    <div class="cart">
+      <h3>🧾 Cart</h3>
+      <div id="cartItems">No items yet</div>
+    </div>
+
+    <button onclick="window.location.href='user.html'">⬅ Back</button>
+  </div>
+
+  <script>
+    let cart = [];
+
+    function add(item) {
+      cart.push(item);
+      document.getElementById("cartItems").innerText = cart.join(", ");
+    }
+  </script>
+</body>
+</html>
